@@ -13,11 +13,22 @@ namespace TALLER_ASP_II.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string sUsuario, string sContra)
         {
             ViewBag.Message = "Debe iniciar sesión para realizar esta acción.";
-
-            return View();
+            string usuario = "admin" ;
+            string contra="12345";
+            if (sUsuario == usuario && sContra == contra)
+            {
+                return Redirect("/Peliculas1/Index");
+            }
+            else
+            {
+                // Si el numero de pin o de tarjeta no corresponde, entonces se
+                // procede a mostrar un mensaje de error
+                ViewBag.Error = "Error en nombre de usuario o contraseña. Verifique";
+                return View();
+            }
         }
 
         public ActionResult Contact()

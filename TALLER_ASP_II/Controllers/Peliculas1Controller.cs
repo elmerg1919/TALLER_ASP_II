@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using TALLER_ASP_II.Models;
 
@@ -48,6 +52,9 @@ namespace TALLER_ASP_II.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idPelicula,TituloPelicula,Sinopsis,Director,Género,Calificacion,Poster")] Peliculas peliculas)
         {
+            HttpPostedFileBase fileB = Request.Files[0];
+            WebImage image = new WebImage(fileB.InputStream);
+            peliculas.Poster = image.GetBytes();
             if (ModelState.IsValid)
             {
                 db.Peliculas.Add(peliculas);
@@ -122,6 +129,19 @@ namespace TALLER_ASP_II.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult getImage(int id)
+        {
+            Peliculas peli = db.Peliculas.Find(id);
+            byte[] byteImage = peli.Poster;
+            MemoryStream memo= new MemoryStream(byteImage);
+            Image image = Image.FromStream(memo);
+
+            memo = new MemoryStream();
+            image.Save(memo, ImageFormat.Jpeg);
+            memo.Position = 0;
+            return File(memo, "image/jpg");
         }
     }
 }

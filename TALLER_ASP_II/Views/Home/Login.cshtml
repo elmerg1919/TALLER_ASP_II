@@ -6,6 +6,45 @@
 
 <h2>Login</h2>
 <h3>@ViewBag.Message</h3>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Ingrese las credenciales.</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Usuario: ", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBox("sUsuario")
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Contraseña", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.Password("sContra")
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+               
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+            }
+        </section>
+    </div>
+</div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 
