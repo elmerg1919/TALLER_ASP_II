@@ -1,6 +1,6 @@
 ﻿@model List<TALLER_ASP_II.Models.Peliculas>
 @{
-    ViewBag.Title = "ViewPeli";
+    ViewBag.Title = "Peliculas";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -18,13 +18,13 @@
             </tr>
             @foreach (var oElementos in Model)
             {
-            <tr>
-                <td>@oElementos.idPelicula</td>
-                <td>@oElementos.TituloPelicula</td>
-                <td>@oElementos.Sinopsis</td>
-                <td>@oElementos.Director</td>
-                <td>@oElementos.Género</td>
-            </tr>
+                <tr>
+                    <td>@oElementos.idPelicula</td>
+                    <td>@oElementos.TituloPelicula</td>
+                    <td>@oElementos.Sinopsis</td>
+                    <td>@oElementos.Director</td>
+                    <td>@oElementos.Género</td>
+                </tr>
             }
         </table>
 

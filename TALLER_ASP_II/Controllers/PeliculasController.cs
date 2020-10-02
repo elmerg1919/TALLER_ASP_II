@@ -9,7 +9,7 @@ namespace TALLER_ASP_II.Controllers
     public class PeliculasController : Controller
     {
         // GET: Peliculas
-        public ActionResult Index() 
+        public ActionResult Peliculas() 
         {
             List<Peliculas> lst;
             using (CinePlusEntities DB=new CinePlusEntities())
@@ -26,7 +26,7 @@ namespace TALLER_ASP_II.Controllers
                            Poster = d.Poster
                        }).ToList();
             }
-                return View(lst);
+            return View();
         }
     }
 }
