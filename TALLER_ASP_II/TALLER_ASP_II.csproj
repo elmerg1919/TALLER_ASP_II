@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Peliculas1Controller.cs" />
     <Compile Include="Controllers\PeliculasController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,12 @@
     <Content Include="Views\Peliculas\ViewPeli.cshtml" />
     <Content Include="Views\Ranking\Ranking.cshtml" />
     <Content Include="Views\Peliculas\Peliculas.cshtml" />
+    <Content Include="Views\Peliculas1\Create.cshtml" />
+    <Content Include="Views\Peliculas1\Delete.cshtml" />
+    <Content Include="Views\Peliculas1\Details.cshtml" />
+    <Content Include="Views\Peliculas1\Edit.cshtml" />
+    <Content Include="Views\Peliculas1\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

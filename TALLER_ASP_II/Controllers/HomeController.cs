@@ -13,9 +13,9 @@ namespace TALLER_ASP_II.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Debe iniciar sesión para realizar esta acción.";
 
             return View();
         }

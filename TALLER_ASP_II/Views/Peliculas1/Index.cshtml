@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TALLER_ASP_II.Models.Peliculas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TituloPelicula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sinopsis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Género)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Poster)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TituloPelicula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sinopsis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Género)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Poster)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idPelicula }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idPelicula }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idPelicula })
+        </td>
+    </tr>
+}
+
+</table>
