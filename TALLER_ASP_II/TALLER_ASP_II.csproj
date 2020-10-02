@@ -151,7 +151,6 @@
     <Compile Include="Models\Peliculas.cs">
       <DependentUpon>PELI+.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VIEWPELICULAS\LISTAPELISVIEWMODEL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
