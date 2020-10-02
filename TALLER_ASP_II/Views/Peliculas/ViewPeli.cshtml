@@ -1,0 +1,35 @@
+﻿ @model List<TALLER_ASP_II.Models.VIEWPELICULAS.LISTAPELISVIEWMODEL>
+@{
+    ViewBag.Title = "ViewPeli";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table>
+
+            <tr>
+                <th> #</th>
+                <th> Pelicula:</th>
+                <th> Sinopsis:</th>
+                <th> Director:</th>
+                <th> Genero;</th>
+            </tr>
+            @foreach (var oElementos in Model)
+            {
+            <tr>
+                <td>@oElementos.idPelicula</td>
+                <td>@oElementos.TituloPelicula</td>
+                <td>@oElementos.Sinopsis</td>
+                <td>@oElementos.Director</td>
+                <td>@oElementos.Género</td>
+            </tr>
+            }
+        </table>
+
+
+    </div>
+
+
+</div>
