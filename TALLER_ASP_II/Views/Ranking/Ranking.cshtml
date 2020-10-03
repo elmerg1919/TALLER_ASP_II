@@ -1,8 +1,7 @@
 ﻿@using TALLER_ASP_II.Controllers;
 @using System.Data
 @{ RankingController ranking = new RankingController();
-    DataTable r = new DataTable();
-    var rankings = ranking.ObtenerDatos(r);}
+    DataTable r = new DataTable();}
 @{
     ViewBag.Title = "Ranking";
 }
@@ -16,7 +15,7 @@
 
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable(rankings);
+        var data = google.visualization.arrayToDataTable(@Url.Action("ObtenerDatos","Ranking",r));
 
         var options = {
             title: 'Ranking de Películas',

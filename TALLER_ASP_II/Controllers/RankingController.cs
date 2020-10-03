@@ -19,28 +19,31 @@ namespace TALLER_ASP_II.Controllers
         public ActionResult Ranking(DataTable ranks)
         {
             using (var l = new CinePlusEntities()) {
-                var result = l.Peliculas.SqlQuery("SELECT TituloPelicula, Calificacion FROM Peliculas");
-
-                foreach (Peliculas p in result)
+                List<Ranking> result = l.Database.SqlQuery<Ranking>("EXECUTE Ranking").ToList();
+                ranks.Columns.Add(new DataColumn("Películas", typeof(string)));
+                ranks.Columns.Add(new DataColumn("Califación", typeof(int)));
+                foreach (var item in result)
                 {
-                    ranks.Rows.Add(p.TituloPelicula, p.Calificacion);
+                    ranks.Rows.Add(item.TituloPelicula, item.Calificacion);
                 }
             }
             return View();
         }
 
-        public string ObtenerDatos(DataTable ranks) {
+        public ActionResult ObtenerDatos(DataTable ranks) {
             using (var l = new CinePlusEntities())
             {
-                var result = l.Peliculas.SqlQuery("SELECT TituloPelicula, Calificacion FROM Peliculas");
+                List<Ranking> result = l.Database.SqlQuery<Ranking>("EXECUTE Ranking").ToList();
 
-                foreach (Peliculas p in result)
+                ranks.Columns.Add(new DataColumn("Películas", typeof(string)));
+                ranks.Columns.Add(new DataColumn("Califación", typeof(int)));
+                foreach (var item in result)
                 {
-                    ranks.Rows.Add(p.TituloPelicula, p.Calificacion);
+                    ranks.Rows.Add(item.TituloPelicula, item.Calificacion);
                 }
             }
             string strDatos;
-            strDatos = "[['Peliculas', 'Calificacion'],";
+            strDatos = "[";
             foreach (DataRow dr in ranks.Rows)
             {
                 strDatos = strDatos + "[";
@@ -48,7 +51,7 @@ namespace TALLER_ASP_II.Controllers
                 strDatos = strDatos + "],";
             }
             strDatos = strDatos + "]";
-            return strDatos;
+            return View(strDatos);
         }
     }
 }

@@ -153,6 +153,10 @@
     <Compile Include="Models\Peliculas.cs">
       <DependentUpon>PELI+.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ranking.cs" />
+    <Compile Include="Models\Ranking_Result.cs">
+      <DependentUpon>PELI+.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

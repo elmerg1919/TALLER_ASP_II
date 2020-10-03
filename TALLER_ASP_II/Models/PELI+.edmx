@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CinePlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CinePlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Peliculas">
           <Key>
             <PropertyRef Name="idPelicula" />
@@ -17,11 +17,11 @@
           <Property Name="Calificacion" Type="decimal" Precision="5" Scale="1" />
           <Property Name="Poster" Type="image" />
         </EntityType>
+        <Function Name="Ranking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CinePlusModelStoreContainer">
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CinePlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -39,7 +39,12 @@
         </EntityType>
         <EntityContainer Name="CinePlusEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" />
+          <FunctionImport Name="Ranking" ReturnType="Collection(CinePlusModel.Ranking_Result)" />
         </EntityContainer>
+        <ComplexType Name="Ranking_Result">
+          <Property Type="String" Name="TituloPelicula" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="5" Scale="1" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -59,6 +64,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Ranking" FunctionName="CinePlusModel.Store.Ranking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinePlusModel.Ranking_Result">
+                <ScalarProperty Name="TituloPelicula" ColumnName="TituloPelicula" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
