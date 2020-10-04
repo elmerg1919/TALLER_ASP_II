@@ -33,5 +33,10 @@ namespace TALLER_ASP_II.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Ranking_Result>("Ranking");
         }
+    
+        public virtual ObjectResult<BestMovie_Result1> BestMovie()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BestMovie_Result1>("BestMovie");
+        }
     }
 }

@@ -17,22 +17,12 @@ namespace TALLER_ASP_II.Controllers
         // GET: Ranking
         public ActionResult Ranking()
         {
-            DataTable ranks = new DataTable();
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Ranking(DataTable ranks)
-        {
-            using (var l = new CinePlusEntities()) {
-                List<Ranking> result = l.Database.SqlQuery<Ranking>("EXECUTE Ranking").ToList();
-                ranks.Columns.Add(new DataColumn("Películas", typeof(string)));
-                ranks.Columns.Add(new DataColumn("Califación", typeof(int)));
-                foreach (var item in result)
-                {
-                    ranks.Rows.Add(item.TituloPelicula, item.Calificacion);
-                }
+            using (var db = new CinePlusEntities())
+            {
+                var data = db.Database.SqlQuery<Ranking_Result>("EXECUTE Ranking").ToList();
+               ViewBag.BestPeli= data[0].TituloPelicula.ToString();
             }
-            ViewBag.r = ranks;
+
             return View();
         }
 
@@ -40,7 +30,7 @@ namespace TALLER_ASP_II.Controllers
         {
             using (var db = new CinePlusEntities())
             {
-                var data = db.Database.SqlQuery<Ranking>("EXECUTE Ranking").ToList();
+                var data = db.Database.SqlQuery<Ranking_Result>("EXECUTE Ranking").ToList();
                 var myChart = new Chart(width: 600, height: 400)
                .AddTitle("Mejores peliculas")
                .DataBindTable(dataSource: data, xField: "TituloPelicula")
@@ -57,27 +47,5 @@ namespace TALLER_ASP_II.Controllers
             }
         }
 
-        /*  public ActionResult ObtenerDatos(DataTable ranks) {
-              using (var l = new CinePlusEntities())
-              {
-                  List<Ranking> result = l.Database.SqlQuery<Ranking>("EXECUTE Ranking").ToList();
-
-                  ranks.Columns.Add(new DataColumn("Películas", typeof(string)));
-                  ranks.Columns.Add(new DataColumn("Califación", typeof(int)));
-                  foreach (var item in result)
-                  {
-                      ranks.Rows.Add(item.TituloPelicula, item.Calificacion);
-                  }
-              }
-              ViewBag.strDatos="[";
-              foreach (DataRow dr in ranks.Rows)
-              {
-                  strDatos = strDatos + "[";
-                  strDatos = strDatos + "'" + dr[0] + "'" + "," + dr[1];
-                  strDatos = strDatos + "],";
-              }
-              strDatos = strDatos + "]";
-              return View();
-          }*/
     }
 }

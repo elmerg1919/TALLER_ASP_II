@@ -135,6 +135,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BestMovie_Result.cs">
+      <DependentUpon>PELI+.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BestMovie_Result1.cs">
+      <DependentUpon>PELI+.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PELI+.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,7 +159,6 @@
     <Compile Include="Models\Peliculas.cs">
       <DependentUpon>PELI+.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ranking.cs" />
     <Compile Include="Models\Ranking_Result.cs">
       <DependentUpon>PELI+.tt</DependentUpon>
     </Compile>

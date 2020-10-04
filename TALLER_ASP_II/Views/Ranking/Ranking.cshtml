@@ -1,4 +1,5 @@
-﻿@{ ViewBag.Title = "Ranking";}
+﻿@{ ViewBag.Title = "Ranking";
+    }
 
 <h2>Ranking</h2>
 
@@ -12,6 +13,7 @@
         Las películas mejores calificadas son:
     </p>
     <p><img src="@Url.Action("getImage", "Ranking")" /> </p>
+    <p>Pélícula mejor calificada: @ViewBag.BestPeli</p>
 
 </body>
 </html>

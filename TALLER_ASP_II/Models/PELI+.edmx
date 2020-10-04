@@ -17,6 +17,7 @@
           <Property Name="Calificacion" Type="decimal" Precision="5" Scale="1" />
           <Property Name="Poster" Type="image" />
         </EntityType>
+        <Function Name="BestMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Ranking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CinePlusModelStoreContainer">
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" Schema="dbo" store:Type="Tables" />
@@ -40,10 +41,18 @@
         <EntityContainer Name="CinePlusEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" />
           <FunctionImport Name="Ranking" ReturnType="Collection(CinePlusModel.Ranking_Result)" />
+          <FunctionImport Name="BestMovie" ReturnType="Collection(CinePlusModel.BestMovie_Result1)" />
         </EntityContainer>
         <ComplexType Name="Ranking_Result">
           <Property Type="String" Name="TituloPelicula" Nullable="false" MaxLength="150" />
           <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="5" Scale="1" />
+        </ComplexType>
+        <ComplexType Name="BestMovie_Result">
+          <Property Type="String" Name="TituloPelicula" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="Calificacion" Nullable="true" Precision="5" Scale="1" />
+        </ComplexType>
+        <ComplexType Name="BestMovie_Result1">
+          <Property Type="String" Name="TituloPelicula" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -69,6 +78,13 @@
               <ComplexTypeMapping TypeName="CinePlusModel.Ranking_Result">
                 <ScalarProperty Name="TituloPelicula" ColumnName="TituloPelicula" />
                 <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BestMovie" FunctionName="CinePlusModel.Store.BestMovie">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="CinePlusModel.BestMovie_Result1">
+                <ScalarProperty Name="TituloPelicula" ColumnName="TituloPelicula" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
