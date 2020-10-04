@@ -137,6 +137,7 @@ namespace TALLER_ASP_II.Controllers
             byte[] byteImage = peli.Poster;
             MemoryStream memo= new MemoryStream(byteImage);
             Image image = Image.FromStream(memo);
+            
 
             memo = new MemoryStream();
             image.Save(memo, ImageFormat.Jpeg);

@@ -1,52 +1,18 @@
-﻿@using TALLER_ASP_II.Controllers;
-@using System.Data
-@{ RankingController ranking = new RankingController();
-    DataTable r = new DataTable();}
-@{
-    ViewBag.Title = "Ranking";
-}
+﻿@{ ViewBag.Title = "Ranking";}
 
 <h2>Ranking</h2>
+
+<!DOCTYPE html>
+<html>
 <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable(@Url.Action("ObtenerDatos","Ranking",r));
-
-        var options = {
-            title: 'Ranking de Películas',
-            fontSize: 12,
-            legend: {
-                position: "right",
-                textStyle: {
-                    color: "#000000",
-                    fontSize: 14
-                }
-            },
-            colors: ["#1f386b", "#DC3912", "#FF9900", "#109618", "#990099"],
-            hAxis: {
-                title: 'Películas'
-            },
-            vAxis: {
-                title: '',
-                minValue: 0,
-                maxValue: 21,
-                format:'##,##%'
-            }
-        };
-
-          var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
-          var formatter = new google.visualization.NumberFormat({ pattern: '##,##%' });
-          formatter.format(data, 1);
-          chart.draw(data, options);
-      }
-    </script>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div id="chart" style="width: 900px; height: 500px;"></div>
+    <p>
+        Las películas mejores calificadas son:
+    </p>
+    <p><img src="@Url.Action("getImage", "Ranking")" /> </p>
+
 </body>
+</html>
 
